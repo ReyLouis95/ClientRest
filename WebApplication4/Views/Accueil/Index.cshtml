@@ -1,0 +1,24 @@
+﻿@using WebApplication4.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of the document</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
+</head>
+
+<body>
+    @{ List<Velo> listeVelos = Velo.getAllVelos();
+        List<Categorie> listeCategorie = Categorie.GetAllCategories();}
+    @Html.Action("Master", "Master")
+    The content of the document......
+    <div>
+        @foreach (Categorie categorie in listeCategorie)
+        {
+            <div class="categorie" data-id="@categorie.Id">@categorie.libelle</div>
+        }
+    </div>
+    <div id="detailCategorie"></div>
+</body>
+
+</html>
