@@ -11,11 +11,10 @@
     @{ List<Velo> listeVelos = Velo.getAllVelos();
         List<Categorie> listeCategorie = Categorie.GetAllCategories();}
     @Html.Action("Master", "Master")
-    The content of the document......
     <div>
         @foreach (Categorie categorie in listeCategorie)
         {
-            <div class="categorie" data-id="@categorie.Id">@categorie.libelle</div>
+            @Html.ActionLink(categorie.libelle, "ListeProduits", "ListeProduits", new {id = categorie.Id }, null) <br />
         }
     </div>
 <table id="table">

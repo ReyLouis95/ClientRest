@@ -11,12 +11,5 @@ namespace WebApplication4.Controllers
     {
         // GET: Accueil
         public ActionResult Index() => View();
-        public ActionResult GetVelos() => Json(Test.GetVelo(), JsonRequestBehavior.AllowGet);
-
-        public ActionResult getVelosByCateg(int id)
-        {
-            return Json(Velo.GetVeloByCateg(id));
-        }
-
     }
 }

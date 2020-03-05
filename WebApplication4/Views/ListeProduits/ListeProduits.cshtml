@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @using WebApplication4.Models
+    <title>Title of the document</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
+</head>
+<body>
+    @{
+        List<Velo> listeVelo = ViewBag.listeVelos;
+    }
+    @Html.Action("Master", "Master")
+
+    @foreach(Velo velo in listeVelo)
+    {
+        <div>@velo.Nom</div>
+    }
+
+</body>
+</html>
+

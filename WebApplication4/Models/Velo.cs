@@ -76,6 +76,11 @@ namespace WebApplication4.Models
             return listeVelo;
         }
 
+        /// <summary>
+        /// retourne la liste de velo en fonction de la categorie
+        /// </summary>
+        /// <param name="id">id de la categorie</param>
+        /// <returns>liste de velo</returns>
         public static List<Velo> GetVeloByCateg(int id)
         {
             string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo/Categorie/" + id;
