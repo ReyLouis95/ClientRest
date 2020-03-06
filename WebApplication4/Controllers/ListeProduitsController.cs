@@ -9,11 +9,18 @@ namespace WebApplication4.Controllers
 {
     public class ListeProduitsController : Controller
     {
-        // GET: ListeProduits
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">id de la categorie</param>
+        /// <returns>la liste de velos correpondante à la categorie</returns>
         public ActionResult ListeProduits(int id)
         {
-            ViewBag.listeVelos = Velo.GetVeloByCateg(id);
-            return View();
+            var listeVelos = new ListeVeloModel
+            {
+                ListeVelos = Produit.GetVeloByCateg(id),
+            };
+            return View(listeVelos);
         }
     }
 }

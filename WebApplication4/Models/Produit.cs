@@ -8,7 +8,7 @@ using System.Web;
 
 namespace WebApplication4.Models
 {
-    public class Velo
+    public class Produit
     {
         public int Id { get; set; }
 
@@ -23,12 +23,12 @@ namespace WebApplication4.Models
 
         public int QuantiteStock { get; set; }
 
-        public Velo()
+        public Produit()
         {
 
         }
 
-        public Velo(int id, string nom, string categorie, double prix, string description, int quantiteStock)
+        public Produit(int id, string nom, string categorie, double prix, string description, int quantiteStock)
         {
             Id = id;
             Nom = nom;
@@ -42,11 +42,11 @@ namespace WebApplication4.Models
         /// retourne la liste de tous les velos du webservice
         /// </summary>
         /// <returns></returns>
-        public static List<Velo> getAllVelos()
+        public static List<Produit> getAllVelos()
         {
             string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo";
             var request = (HttpWebRequest)WebRequest.Create(url);
-            var listeVelo = new List<Velo>();
+            var listeVelo = new List<Produit>();
             request.Method = "GET";
             var content = string.Empty;
             try
@@ -71,7 +71,7 @@ namespace WebApplication4.Models
             for (int i = 0; i < jsonArray.Count(); i++)
             {
                 dynamic velo = JObject.Parse(jsonArray[i].ToString());
-                listeVelo.Add(velo.ToObject(typeof(Velo)));
+                listeVelo.Add(velo.ToObject(typeof(Produit)));
             }
             return listeVelo;
         }
@@ -81,11 +81,11 @@ namespace WebApplication4.Models
         /// </summary>
         /// <param name="id">id de la categorie</param>
         /// <returns>liste de velo</returns>
-        public static List<Velo> GetVeloByCateg(int id)
+        public static List<Produit> GetVeloByCateg(int id)
         {
             string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo/Categorie/" + id;
             var request = (HttpWebRequest)WebRequest.Create(url);
-            var listeVelo = new List<Velo>();
+            var listeVelo = new List<Produit>();
             request.Method = "GET";
             var content = string.Empty;
             try
@@ -110,9 +110,38 @@ namespace WebApplication4.Models
             for (int i = 0; i < jsonArray.Count(); i++)
             {
                 dynamic velo = JObject.Parse(jsonArray[i].ToString());
-                listeVelo.Add(velo.ToObject(typeof(Velo)));
+                listeVelo.Add(velo.ToObject(typeof(Produit)));
             }
             return listeVelo;
+        }
+
+        public static Produit GetVeloById(int id)
+        {
+            string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo/" + id;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            var content = string.Empty;
+            try
+            {
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (var stream = response.GetResponseStream())
+                    {
+                        using (var sr = new StreamReader(stream))
+                        {
+                            content = sr.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            dynamic velo = JObject.Parse(content.ToString());
+            velo = velo.ToObject(typeof(Produit));
+            return velo;
         }
 
     }

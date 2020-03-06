@@ -7,9 +7,14 @@ namespace WebApplication4.Models
 {
     public class ListeVeloModel
     {
-        public List<Velo> ListeVelos { get; set; }
+        public List<Produit> ListeVelos { get; set; }
 
-        public ListeVeloModel(List<Velo> listeVelos)
+        public ListeVeloModel()
+        {
+
+        }
+
+        public ListeVeloModel(List<Produit> listeVelos)
         {
             ListeVelos = listeVelos;
         }

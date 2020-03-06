@@ -2,19 +2,17 @@
 <html>
 <head>
     @using WebApplication4.Models
+    @model WebApplication4.Models.ListeVeloModel
     <title>Title of the document</title>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
 </head>
 <body>
-    @{
-        List<Velo> listeVelo = ViewBag.listeVelos;
-    }
     @Html.Action("Master", "Master")
 
-    @foreach(Velo velo in listeVelo)
+    @foreach(Produit velo in Model.ListeVelos)
     {
-        <div>@velo.Nom</div>
+         @Html.ActionLink(@velo.Nom + @velo.Categorie + @velo.Description, "DescriptionProduit", "DescriptionProduit", new {id = velo.Id }, null )
     }
 
 </body>

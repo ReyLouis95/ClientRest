@@ -1,0 +1,13 @@
+﻿@using WebApplication4.Models
+@model WebApplication4.Models.Produit
+<div>
+    <h1>Descriptif Produit</h1>
+    <div>@Model.</div>
+    <button>Commander cet article</button>
+    <select>
+        @for(int i = 0; i<Model.QuantiteStock; i++)
+        {
+            <option>@i</option>
+        }
+    </select>
+</div>
