@@ -1,13 +1,24 @@
 ﻿@using WebApplication4.Models
 @model WebApplication4.Models.Produit
-<div>
-    <h1>Descriptif Produit</h1>
-    <div>@Model.</div>
-    <button>Commander cet article</button>
-    <select>
-        @for(int i = 0; i<Model.QuantiteStock; i++)
-        {
-            <option>@i</option>
-        }
-    </select>
-</div>
+<html>
+<head>
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/DescriptionProduit.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div id="url" data-url="@Url.Action("AjouterProduitPanier", "DescriptionProduit")">
+        <h1>Descriptif Produit</h1>
+        <div data-id="@Model.Id" id="categorie">@Model.Categorie</div>
+        <div id="nom">@Model.Nom</div>
+        <div id="description">@Model.Description</div>
+        <div id="prix">@Model.Prix</div>
+        <button id="commande">Commander cet article</button>
+        <select id="select">
+            @for (int i = 0; i < Model.QuantiteStock; i++)
+            {
+                <option>@i</option>
+            }
+        </select>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@using WebApplication4.Models;
+@{
+    Panier panier = (Panier)Session["Panier"];
+}
+<div>
+    <h4>Panier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @foreach(Produit produit in panier.ListeProduit)
+    {
+        <span>@produit.Description</span>
+    }
+</p>

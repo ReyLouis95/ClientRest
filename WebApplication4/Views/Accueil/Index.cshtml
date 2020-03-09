@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Title of the document</title>
+    @Styles.Render("~/Content/Site.css")
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
 </head>
@@ -10,23 +11,16 @@
 <body>
     @{ List<Produit> listeVelos = Produit.getAllVelos();
         List<Categorie> listeCategorie = Categorie.GetAllCategories();}
-    @Html.Action("Master", "Master")
     <div>
         @foreach (Categorie categorie in listeCategorie)
         {
             @Html.ActionLink(categorie.libelle, "ListeProduits", "ListeProduits", new {id = categorie.Id }, null) <br />
         }
     </div>
-<table id="table">
-    <thead>
-        <tr>Nom</tr>
-        <tr>Categorie</tr>
-        <tr>Prix</tr>
-    </thead>
-    <tbody>
-        <tr></tr>
-    </tbody>
-</table>
+    <div id="panier" class="cache">
+        @Html.Partial(Url.Content("~/Views/Panier/Panier.cshtml"))
+    </div>
+    <button id="boutonPanier">Afficher mon panier</button>
 </body>
 
 </html>
