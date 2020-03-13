@@ -8,6 +8,8 @@ namespace WebApplication4.Models
 {
     public class Client
     {
+        public Client() { }
+
         [Required(ErrorMessage ="Nom obligatoire")]
         public string Nom { get; set; }
 

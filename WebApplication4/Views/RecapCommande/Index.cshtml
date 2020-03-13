@@ -1,0 +1,17 @@
+﻿@using WebApplication4.Models
+@{
+    Panier panier = (Panier)Session["Panier"];
+    Client client = (Client)Session["Client"];
+}
+
+<div>Vos Produits Commandés</div>
+
+@foreach (Produit produit in panier.ListeProduit)
+{
+    <span>@produit.Description</span>
+}
+
+<div>Vos informations personnelles</div>
+<div>Nom</div> <div>@client.Nom</div>
+<div>Prenom  @client.Prenom</div>
+<div>Adresse mail  @client.Mail</div>

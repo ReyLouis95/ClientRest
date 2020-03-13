@@ -23,6 +23,7 @@ namespace WebApplication4
         void Session_Start(object sender, EventArgs e)
         {
             Session["Panier"] = new Panier();
+            Session["Client"] = new Client();
         }
     }
 }

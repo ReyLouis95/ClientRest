@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace WebApplication4.Controllers
 {
-    public class ConfirmationController : Controller
+    public class InscriptionController : Controller
     {
-        [HttpPost]
-        // GET: Confirmation
+        // GET: Inscription
         public ActionResult Index()
         {
             return View();

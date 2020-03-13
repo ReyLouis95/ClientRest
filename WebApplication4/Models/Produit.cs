@@ -144,5 +144,38 @@ namespace WebApplication4.Models
             return velo;
         }
 
+        public static void DeleteProduit(int id, int nbCommande)
+        {
+            string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo/" + id;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            var content = string.Empty;
+            request.ContentType = "application/json";
+            request.Method = "PATCH";
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                /*string json = "{\"nbCommande\":\"1\"," +
+                              "\"id\":\"1\"}";
+
+                streamWriter.Write(json);*/
+            }
+            try
+            {
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (var stream = response.GetResponseStream())
+                    {
+                        using (var sr = new StreamReader(stream))
+                        {
+                            content = sr.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

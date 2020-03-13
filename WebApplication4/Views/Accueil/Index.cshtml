@@ -14,11 +14,12 @@
     <div>
         @foreach (Categorie categorie in listeCategorie)
         {
-            @Html.ActionLink(categorie.libelle, "ListeProduits", "ListeProduits", new {id = categorie.Id }, null) <br />
+            @Html.ActionLink(categorie.libelle, "ListeProduits", "ListeProduits", new {id = categorie.Id }, "a") <br />
         }
     </div>
     <div id="panier" class="cache">
         @Html.Partial(Url.Content("~/Views/Panier/Panier.cshtml"))
+        @Html.ActionLink("Valider mon panier", "Index", "Inscription", null, new { @class = "bouton"})
     </div>
     <button id="boutonPanier">Afficher mon panier</button>
 </body>
