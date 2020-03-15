@@ -3,18 +3,73 @@
 <head>
     @using WebApplication4.Models
     @model WebApplication4.Models.ListeVeloModel
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
     <title>Title of the document</title>
+    @Styles.Render("~/Content/Site.css")
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
+    <script type="text/javascript" src="~/Scripts/datatables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#table").DataTable({
+                "oLanguage": {
+                    "sEmptyTable": "Aucune donnée disponible dans le tableau",
+                    "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+                    "sInfoEmpty": "Affichage de l'élément 0 à 0 sur 0 élément",
+                    "sInfoFiltered": "(filtré à partir de _MAX_ éléments au total)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ",",
+                    "sLengthMenu": "Afficher _MENU_ éléments",
+                    "sLoadingRecords": "Chargement...",
+                    "sProcessing": "Traitement...",
+                    "sSearch": "Rechercher :",
+                    "sZeroRecords": "Aucun élément correspondant trouvé",
+                    "oPaginate": {
+                        "sFirst": "Premier",
+                        "sLast": "Dernier",
+                        "sNext": "Suivant",
+                        "sPrevious": "Précédent"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": activer pour trier la colonne par ordre croissant",
+                        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "%d lignes sélectionnées",
+                            "0": "Aucune ligne sélectionnée",
+                            "1": "1 ligne sélectionnée"
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    @Html.Action("Master", "Master")
-
-    @foreach(Produit velo in Model.ListeVelos)
-    {
-         @Html.ActionLink(@velo.Nom + @velo.Categorie + @velo.Description, "DescriptionProduit", "DescriptionProduit", new {id = velo.Id }, null )
-    }
-
+    <table id="table" class="display">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Produit velo in Model.ListeVelos)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@velo.Nom, "DescriptionProduit", "DescriptionProduit", new { id = velo.Id }, null)</td>
+                    <td>@velo.Description</td>
+                    <td>@(velo.Prix + " €")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div id="panier" class="cache">
+        @Html.Partial(Url.Content("~/Views/Panier/Panier.cshtml"))
+    </div>
+    <button id="boutonPanier">Afficher mon panier</button>
 </body>
 </html>
 

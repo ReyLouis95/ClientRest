@@ -12,7 +12,7 @@
             Categorie: categorie,
             Prix: prix,
             Description: description,
-            QuantiteStock: quantiteStock
+            QuantiteStock: $("#select option:selected").text(),
         }
         $.ajax({
             type: "POST",
@@ -22,7 +22,7 @@
             //dataType: "json",
             success: function (data) {
                 console.log(data);
-                alert();
+                alert("Le produit a bien été ajouté dans votre panier");
             },
             error: function (data) {
                 alert("erreur");

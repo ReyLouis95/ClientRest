@@ -9,8 +9,25 @@
     </dl>
 </div>
 <p>
-    @foreach(Produit produit in panier.ListeProduit)
+    @if (panier.ListeProduit.Count == 0)
     {
-        <span>@produit.Description</span>
+        <div>Votre panier est vide</div>
     }
+    else
+    {
+        foreach (Produit produit in panier.ListeProduit)
+        {
+            <div>Nom: @produit.Nom</div>
+            <div>Categorie: @produit.Categorie</div>
+            <div>Description: @produit.Description</div>
+            <div>Quantite Commandée: @produit.QuantiteStock</div>
+            <div>Prix: @produit.Prix €</div>
+            <br />
+            <br />
+        }
+        @Html.ActionLink("Valider mon panier", "Index", "Inscription", null, new { @class = "bouton" })
+    }
+
+
+
 </p>

@@ -3,15 +3,23 @@
     Panier panier = (Panier)Session["Panier"];
     Client client = (Client)Session["Client"];
 }
-
-<div>Vos Produits Commandés</div>
+<h1>La commande a bien été enregistrée</h1>
+<h3>Vos Produits Commandés</h3>
 
 @foreach (Produit produit in panier.ListeProduit)
 {
-    <span>@produit.Description</span>
+    <div>Nom: @produit.Nom</div>
+    <div>Categorie: @produit.Categorie</div>
+    <div>Description: @produit.Description</div>
+    <div>Quantite Commandée: @produit.QuantiteStock</div>
+    <div>Prix: @produit.Prix €</div>
+    <br />
+    <br />
 }
 
-<div>Vos informations personnelles</div>
+<div>Prix total du panier: @panier.prix €</div>
+
+<h3>Vos informations personnelles</h3>
 <div>Nom</div> <div>@client.Nom</div>
 <div>Prenom  @client.Prenom</div>
 <div>Adresse mail  @client.Mail</div>

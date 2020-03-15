@@ -4,21 +4,28 @@
 <head>
     <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/DescriptionProduit.js")" type="text/javascript"></script>
+    @Styles.Render("~/Content/Site.css")
+    <script type="text/javascript" src="~/Scripts/Accueil.js"></script>
 </head>
 <body>
     <div id="url" data-url="@Url.Action("AjouterProduitPanier", "DescriptionProduit")">
         <h1>Descriptif Produit</h1>
-        <div data-id="@Model.Id" id="categorie">@Model.Categorie</div>
-        <div id="nom">@Model.Nom</div>
-        <div id="description">@Model.Description</div>
-        <div id="prix">@Model.Prix</div>
-        <button id="commande">Commander cet article</button>
+        Catégorie: <span data-id="@Model.Id" id="categorie">@Model.Categorie</span><br />
+        Nom: <span id="nom">@Model.Nom</span><br />
+        Description: <span id="description">@Model.Description</span><br />
+        Prix: <span id="prix">@Model.Prix</span>€<br />
+        <span>Quantité souhaitée</span><br />
         <select id="select">
-            @for (int i = 0; i < Model.QuantiteStock; i++)
+            @for (int i = 1; i <= Model.QuantiteStock; i++)
             {
                 <option>@i</option>
             }
         </select>
+        <br />
+        <button id="commande">Commander cet article</button>
+
+    </div>
+    <div id="panier" class="cache">
     </div>
 </body>
 </html>

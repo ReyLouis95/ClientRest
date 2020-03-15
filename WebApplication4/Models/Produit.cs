@@ -144,7 +144,7 @@ namespace WebApplication4.Models
             return velo;
         }
 
-        public static void DeleteProduit(int id, int nbCommande)
+        public static void DeleteProduit(int id, int nbCommandes)
         {
             string url = System.Configuration.ConfigurationSettings.AppSettings["URLApi"] + "Velo/" + id;
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -153,10 +153,10 @@ namespace WebApplication4.Models
             request.Method = "PATCH";
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
-                /*string json = "{\"nbCommande\":\"1\"," +
-                              "\"id\":\"1\"}";
+                int nbCommande = nbCommandes;
 
-                streamWriter.Write(json);*/
+                streamWriter.Write(nbCommande);
+                streamWriter.Close();
             }
             try
             {
